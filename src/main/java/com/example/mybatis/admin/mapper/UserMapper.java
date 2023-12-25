@@ -12,7 +12,7 @@ import java.util.List;
 public interface UserMapper {
 
     //查询全部用户信息
-    @Select("SELECT * FROM `user`")
+    @Select("SELECT * FROM `user`")  
     List<User> list();
 
     //删除用户信息
