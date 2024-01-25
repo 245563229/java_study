@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 
 public class User {
     // 用户id
-    private String id;
+    private int id;
     //    姓名
     private String userName;
     //    手机号
