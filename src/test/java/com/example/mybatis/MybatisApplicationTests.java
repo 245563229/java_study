@@ -77,7 +77,7 @@ class MybatisApplicationTests {
 
     @Test
     public void getUserByParams() {
-        List<User> userList = userMapper.getUserlist(null, String.valueOf(2), null, null);
+        List<User> userList = userMapper.getUserlist(null, null, null, null);
         System.out.println(userList);
     }
 

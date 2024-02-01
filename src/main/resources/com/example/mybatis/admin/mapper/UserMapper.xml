@@ -3,6 +3,10 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.mybatis.admin.mapper.UserMapper">
+    <sql id="commonSelect">
+        select user_name, id, create_time, user_phone, dept_id, sex
+        from study_java.user
+    </sql>
     <update id="update2">
         update study_java.user
         <set>
@@ -22,9 +26,13 @@
         where id = #{id}
     </update>
 
+
     <select id="getUserlist" resultType="com.example.mybatis.admin.User">
-    select *
-    from study_java.user
+#     select * select*对性能影响很严重，不推荐使用
+#         select user_name, id, create_time, user_phone, dept_id, sex
+#         from study_java.user
+<include refid="commonSelect"></include>
+
    <where>
     <if test="userName != null">
      user_name like concat('%', #{userName}, '%')
