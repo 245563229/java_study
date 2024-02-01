@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.List;
 
 @SpringBootTest
@@ -15,7 +16,8 @@ class MybatisApplicationTests {
 
     @Autowired
     private UserMapper userMapper;
-//获取列表
+
+    //获取列表
     @Test
     public void contextLoads() {
         List<User> userList = userMapper.list();
@@ -23,7 +25,8 @@ class MybatisApplicationTests {
             System.out.println(user);
         });
     }
-//删除员工
+
+    //删除员工
     @Test
     public void testDelete() {
 //        int delete = userMapper.delete("106");
@@ -33,20 +36,20 @@ class MybatisApplicationTests {
 
     // 添加员工
     @Test
-    public void addPerson(){
-          User user = new User();
-          user.setUserName("赵八");
-          user.setSex("1");
-          user.setUserPhone("15846");
-          user.setDeptId("101");
+    public void addPerson() {
+        User user = new User();
+        user.setUserName("赵八");
+        user.setSex("1");
+        user.setUserPhone("15846");
+        user.setDeptId("101");
 
-          userMapper.insert(user);
-          System.out.println(user.getId());
+        userMapper.insert(user);
+        System.out.println(user.getId());
     }
 
     // 更新员工
     @Test
-    public void updatePerson(){
+    public void updatePerson() {
         User user = new User();
         user.setId(108);
         user.setUserName("赵八1");
@@ -60,7 +63,7 @@ class MybatisApplicationTests {
 
     //获取员工
     @Test
-    public void getUserById(){
+    public void getUserById() {
         User user = userMapper.getById(108);
         System.out.println(user);
     }
@@ -73,14 +76,14 @@ class MybatisApplicationTests {
 //    }
 
     @Test
-    public void getUserByParams(){
-        List<User> userList = userMapper.getUserlist(null,String.valueOf(2),null,null);
+    public void getUserByParams() {
+        List<User> userList = userMapper.getUserlist(null, String.valueOf(2), null, null);
         System.out.println(userList);
     }
 
     // 更新员工
     @Test
-    public void updatePerson2(){
+    public void updatePerson2() {
         User user = new User();
         user.setId(108);
         user.setUserName("赵八1111");
@@ -88,13 +91,21 @@ class MybatisApplicationTests {
         userMapper.update(user);
         System.out.println(user.getId());
     }
- // 动态更新
+
+    // 动态更新
     @Test
-    public void updatePerson3(){
+    public void updatePerson3() {
         User user = new User();
         user.setId(108);
         user.setUserName("赵八333");
         userMapper.update2(user);
         System.out.println(user.getId());
+    }
+
+    // 批量删除
+    @Test
+    public void deletePersons() {
+        List<Integer> ids = Arrays.asList(107, 108);
+        userMapper.deleteByIds(ids);
     }
 }

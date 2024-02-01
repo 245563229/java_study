@@ -66,6 +66,8 @@ public interface UserMapper {
 
    public void update2(User user);
 
-   // 批量删除
+   // 批量删除\
+
+    public void deleteByIds(@Param("ids") List<Integer> ids);
 }
 

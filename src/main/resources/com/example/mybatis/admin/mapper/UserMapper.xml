@@ -21,6 +21,7 @@
         </set>
         where id = #{id}
     </update>
+
     <select id="getUserlist" resultType="com.example.mybatis.admin.User">
     select *
     from study_java.user
@@ -38,4 +39,16 @@
     order by create_time
 </select>
 
+    <delete id="deleteByIds">
+        # 遍历，collection遍历的集合。
+        # item遍历出来的元素，
+        # separator 分隔符
+        # open 便利开始前拼接的sql片段
+        # close 遍历结束后拼接的sql字段
+        # ids片段(107,108)
+        delete from study_java.user where id in
+        <foreach collection="ids" item="id" separator="," open="(" close=")">
+            #{id}
+        </foreach>
+    </delete>
 </mapper>
