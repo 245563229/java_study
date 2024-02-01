@@ -44,17 +44,28 @@ public interface UserMapper {
     public User getById(Integer id);
 
     // 根据条件查询员工
-    @Select("select * from user where " +
-            // 在‘’中无法使用#{},'%#{userName}%',$有被注入脚本的风险，所以用concat
-            "user_name like concat('%',#{userName},'%') and " +
-            "sex = #{sex} and " +
-            "create_time between #{startTime} and #{endTime} " +
-            "order by create_time")
-    // 单独使用mybatis时，映射会出问题，userName等会变成var1 var2，
-    // 所以使用@Param映射到对应才行
+//    @Select("select * from user where " +
+//            // 在‘’中无法使用#{},'%#{userName}%',$有被注入脚本的风险，所以用concat
+//            "user_name like concat('%',#{userName},'%') and " +
+//            "sex = #{sex} and " +
+//            "create_time between #{startTime} and #{endTime} " +
+//            "order by create_time")
+//    // 单独使用mybatis时，映射会出问题，userName等会变成var1 var2，
+//    // 所以使用@Param映射到对应才行
+//    public List<User> getUserlist(@Param("userName") String userName,
+//                                  @Param("sex") String sex,
+//                                  @Param("startTime") LocalDate startTime,
+//                                  @Param("endTime") LocalDate endTime);
+
+    // 动态根据条件查询员工
     public List<User> getUserlist(@Param("userName") String userName,
                                   @Param("sex") String sex,
                                   @Param("startTime") LocalDate startTime,
                                   @Param("endTime") LocalDate endTime);
+   // 动态更新员工信息
+
+   public void update2(User user);
+
+   // 批量删除
 }
 

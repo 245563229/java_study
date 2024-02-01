@@ -66,9 +66,35 @@ class MybatisApplicationTests {
     }
 
     // 根据条件查询员工
+//    @Test
+//    public void getUserByParams(){
+//        List<User> userList = userMapper.getUserlist("李", String.valueOf(2), LocalDate.of(2020,01,01),LocalDate.of(2024,12,30));
+//          System.out.println(userList);
+//    }
+
     @Test
     public void getUserByParams(){
-        List<User> userList = userMapper.getUserlist("李", String.valueOf(2), LocalDate.of(2020,01,01),LocalDate.of(2024,12,30));
-          System.out.println(userList);
+        List<User> userList = userMapper.getUserlist(null,String.valueOf(2),null,null);
+        System.out.println(userList);
+    }
+
+    // 更新员工
+    @Test
+    public void updatePerson2(){
+        User user = new User();
+        user.setId(108);
+        user.setUserName("赵八1111");
+        user.setUserPhone("15755");
+        userMapper.update(user);
+        System.out.println(user.getId());
+    }
+ // 动态更新
+    @Test
+    public void updatePerson3(){
+        User user = new User();
+        user.setId(108);
+        user.setUserName("赵八333");
+        userMapper.update2(user);
+        System.out.println(user.getId());
     }
 }

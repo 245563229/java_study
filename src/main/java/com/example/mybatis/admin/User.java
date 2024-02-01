@@ -22,6 +22,7 @@ public class User {
     private String sex;
     //部门
     private String deptId;
+
 //    不用lombok情况下
 //    public String getId() {
 //        return id;
